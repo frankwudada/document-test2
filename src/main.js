@@ -17,3 +17,12 @@ dom.style(test8, 'color', 'yellow')
 dom.style(test8, 'background-color', 'red')
 dom.style(test8, { width: '100px', height: '200px' })
 console.log(dom.style(test8, 'background-color'))
+dom.class.add(test8, 'blue')
+dom.class.remove(test7, 'time')
+console.log(dom.class.has(test8, 'blue'))
+dom.on(test7, 'mouseover', function () {
+	console.log(this)
+})
+dom.off(test7, 'mousedown', function () {
+	console.log(已移除监听器)
+})
