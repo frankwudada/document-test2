@@ -20,9 +20,17 @@ console.log(dom.style(test8, 'background-color'))
 dom.class.add(test8, 'blue')
 dom.class.remove(test7, 'time')
 console.log(dom.class.has(test8, 'blue'))
-dom.on(test7, 'mouseover', function () {
+function listener() {
 	console.log(this)
-})
-dom.off(test7, 'mousedown', function () {
-	console.log(已移除监听器)
-})
+}
+dom.on(test7, 'click', listener)
+dom.off(test7, 'click', listener) // 移除事件和回调函数时配置参数与dom.on保持一致
+dom.on(test7, 'click', listener)
+console.log(dom.find('.red', test9))
+console.log(dom.find('.red'))
+console.log(dom.parent(test4))
+console.log(dom.sibling(test2))
+console.log(dom.previous(test2))
+console.log(dom.next(test2))
+dom.each(test9, (node) => console.log(node))
+console.log(dom.index(test9))

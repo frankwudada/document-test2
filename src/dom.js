@@ -99,4 +99,50 @@ window.dom = {
 	off(node, eventName, fn) {
 		node.removeEventListener(eventName, fn)
 	},
+	// 查找
+	find(selector, node) {
+		return (node || document).querySelectorAll(selector)
+	},
+	parent(node) {
+		return node.parentNode
+	},
+	children(node) {
+		return node.children
+	},
+	sibling(node) {
+		return Array.from(node.parentNode.children).filter((n) => n !== node) // 过滤器
+	},
+	previous(node) {
+		let x = node.previousSibling
+		while (x && x.nodeType === 3) {
+			x = x.previousSibling
+		}
+		return x
+	},
+	next(node) {
+		let x = node.nextSibling
+		while (x && x.nodeType === 3) {
+			// 短路逻辑
+			x = x.nextSibling
+		}
+		return x
+	},
+	each(node, fn) {
+		if (node.children) {
+			// 遍历
+			for (let i = 0; i < node.children.length; i++) {
+				fn.call(null, node.children[i]) // 坚持使用call方法
+			}
+		}
+	},
+	index(node) {
+		list = dom.children(node.parentNode)
+		let i
+		for (i = 0; i < list.length; i++) {
+			if (list[i] === node) {
+				break
+			}
+		}
+		return i
+	},
 }

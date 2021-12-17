@@ -126,12 +126,22 @@ console.log(dom.style(test8, 'background-color'));
 dom.class.add(test8, 'blue');
 dom.class.remove(test7, 'time');
 console.log(dom.class.has(test8, 'blue'));
-dom.on(test7, 'mouseover', function () {
+function listener() {
 	console.log(this);
+}
+dom.on(test7, 'click', listener);
+dom.off(test7, 'click', listener); // 移除事件和回调函数时配置参数与dom.on保持一致
+dom.on(test7, 'click', listener);
+console.log(dom.find('.red', test9));
+console.log(dom.find('.red'));
+console.log(dom.parent(test4));
+console.log(dom.sibling(test2));
+console.log(dom.previous(test2));
+console.log(dom.next(test2));
+dom.each(test9, function (node) {
+	return console.log(node);
 });
-dom.off(test7, 'mousedown', function () {
-	console.log(已移除监听器);
-});
+console.log(dom.index(test9));
 },{}],"..\\..\\..\\AppData\\Local\\Yarn\\Data\\global\\node_modules\\parcel\\src\\builtins\\hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -161,7 +171,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '51028' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '55442' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 

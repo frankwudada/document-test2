@@ -207,6 +207,55 @@ window.dom = {
 	},
 	off: function off(node, eventName, fn) {
 		node.removeEventListener(eventName, fn);
+	},
+
+	// 查找
+	find: function find(selector, node) {
+		return (node || document).querySelectorAll(selector);
+	},
+	parent: function parent(node) {
+		return node.parentNode;
+	},
+	children: function children(node) {
+		return node.children;
+	},
+	sibling: function sibling(node) {
+		return Array.from(node.parentNode.children).filter(function (n) {
+			return n !== node;
+		}); // 过滤器
+	},
+	previous: function previous(node) {
+		var x = node.previousSibling;
+		while (x && x.nodeType === 3) {
+			x = x.previousSibling;
+		}
+		return x;
+	},
+	next: function next(node) {
+		var x = node.nextSibling;
+		while (x && x.nodeType === 3) {
+			// 短路逻辑
+			x = x.nextSibling;
+		}
+		return x;
+	},
+	each: function each(node, fn) {
+		if (node.children) {
+			// 遍历
+			for (var i = 0; i < node.children.length; i++) {
+				fn.call(null, node.children[i]); // 坚持使用call方法
+			}
+		}
+	},
+	index: function index(node) {
+		list = dom.children(node.parentNode);
+		var i = void 0;
+		for (i = 0; i < list.length; i++) {
+			if (list[i] === node) {
+				break;
+			}
+		}
+		return i;
 	}
 };
 },{}],"..\\..\\..\\AppData\\Local\\Yarn\\Data\\global\\node_modules\\parcel\\src\\builtins\\hmr-runtime.js":[function(require,module,exports) {
@@ -238,7 +287,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '51028' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '55442' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
